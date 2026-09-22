@@ -1,0 +1,34 @@
+{
+    "name": "litemarus",
+    "version": "0.13.0",
+    "license": "GPL-3.0-only",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/TgkRuobin/litemarus.git"
+    },
+    "type": "module",
+    "main": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "exports": {
+        ".": {
+            "types": "./dist/index.d.ts",
+            "node": "./dist/index.js",
+            "browser": "./dist/browser.js",
+            "default": "./dist/index.js"
+        }
+    },
+    "files": [
+        "dist",
+        "src/wasm"
+    ],
+    "scripts": {
+        "build": "tsc -p tsconfig.json && tsx scripts/copy-wasm-to-dist.ts",
+        "lint": "tsc -p tsconfig.json --noEmit",
+        "compile:rust": "tsx scripts/compile-rust.ts"
+    },
+    "devDependencies": {
+        "@types/node": "^25.2.3",
+        "tsx": "^4.21.0",
+        "typescript": "^5.9.3"
+    }
+}
