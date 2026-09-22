@@ -53,16 +53,16 @@ jobs:
       - name: Package artifacts
         run: |
           VERSION="${GITHUB_REF_NAME#v}"
-          tar -czf "litemarus-${VERSION}.tar.gz" dist
+          tar -czf "litemarus-dist-${VERSION}.tar.gz" dist
           if command -v zip >/dev/null 2>&1; then
-            zip -r "litemarus-${VERSION}.zip" dist
+            zip -r "litemarus-dist-${VERSION}.zip" dist
           fi
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
-          name: "litemarus ${GITHUB_REF_NAME}"
+          name: "litemarus ${{ github.ref_name }}"
           generate_release_notes: true
           files: |
-            litemarus-*.tar.gz
-            litemarus-*.zip
+            litemarus-dist-*.tar.gz
+            litemarus-dist-*.zip
