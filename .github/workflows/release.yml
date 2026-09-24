@@ -53,10 +53,8 @@ jobs:
       - name: Package artifacts
         run: |
           VERSION="${GITHUB_REF_NAME#v}"
-          tar -czf "litemarus-dist-${VERSION}.tar.gz" dist
-          if command -v zip >/dev/null 2>&1; then
-            zip -r "litemarus-dist-${VERSION}.zip" dist
-          fi
+          tar -czf "litemarus-dist-${VERSION}.tar.gz" dist src/wasm
+          zip -r "litemarus-dist-${VERSION}.zip" dist src/wasm
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
